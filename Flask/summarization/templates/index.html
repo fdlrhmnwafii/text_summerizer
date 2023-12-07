@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        Text Summarizer
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../static/assets/css/templatemo-onix-digital.css">
+    <link rel="stylesheet" href="../static/assets/css/animated.css">
+    <link rel="stylesheet" href="../static/assets/css/owl.css">
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    header,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    footer {
+        display: block;
+    }
+
+    div {
+        display: block;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: rgb(228, 151, 42);
+    }
+
+    .gray-bg {
+        background-color: #f6f6f6;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .footer .social li a {
+        border: 1px solid #222;
+        display: block;
+        font-size: 14px;
+        height: 30px;
+        line-height: 28px;
+        text-align: center;
+        width: 30px;
+        transform: rotate(45deg);
+    }
+
+    .transition {
+        color: gray;
+        background: 0 0;
+        transition: all .3s ease-in-out;
+    }
+
+    .footer .weblinks-inline {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .marg_bot {
+        margin-bottom: 30px !important;
+    }
+
+    .weblinks-inline li {
+        display: inline;
+        font-size: 200%;
+        margin: 1%;
+        padding: 1% 1% 1% 1%;
+        border-radius: 8px;
+    }
+
+    .copyright {
+        font-size: 15px;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#input">Summarizer</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="#about">About Us</a></li>
+                </ul>
+                <!-- <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul> -->
+            </div>
+        </div>
+    </nav>
+
+    <section class="input container" id="input">
+        <div class="intro jumbotron">
+            <h2>Text Summarizer</h2>
+            <p> You can summarize any text from an article, journal, story
+                and more by simply copying and pasting that text below. The algorithm for
+                the summarazier will display the output summary based on keywords extracted from the text.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <h2 style="margin-bottom: 15px;">Text Summerizer</h2>
+                <form action="/templates" id="sumform" method="POST">
+                    <!-- <label for="exampleFormControlTextarea1">
+                        You can summerize any text from article, journal, story and more by simply copying and pasting
+                        that text below. The Algortim for the summerizer will display the output summary based on
+                        keyword extracted from the text
+                    </label> -->
+                    <textarea maxlength="50000" name="input_text" id="input_text" style="width:600px; 
+                    height:250px" value="{{request.form['input_text']}}"
+                        placeholder="Input your text here"></textarea>></textarea>
+
+                    <br>
+                    <button style="margin: 20px 0 20px 0;" type="submit" id="form-submit"
+                        class="btn btn-success">Generate
+                        Now</button>
+                    <br>
+                    <h4 id="output">Summazrized Text: </h4>
+                    <textbox name="output_text" id="output_text" maxlength="50000" style="width:600px; height:250px">
+                        {% for sentence in output_summary %}
+                        <p>{{ sentence }} </p>
+                        {% endfor %}
+                    </textbox>
+                    <br>
+
+                    <h4>Original Text:</h4>
+                    <p>{{ original_text }}</p>
+                </form>
+
+            </div>
+        </div>
+
+
+        <!-- ***** Header Area End ***** -->
+
+        <div id="pricing" class="pricing-tables">
+            <div class="tables-left-dec">
+                <img src="../static/assets/images/tables-left-dec.png" alt="">
+            </div>
+            <div class="tables-right-dec">
+                <img src="../static/assets/images/tables-right-dec.png" alt="">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-3">
+                        <div id="about" class="section-heading">
+                            <h2><span>Our Developer Team</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="item first-item">
+                            <img src="../static/assets/images/fadel.png" alt="fadel"
+                                class="img-thumbnail rounded-circle" style="width: 4cm; height: 5cm;">
+                            <ul>
+                                <li>Fadhlurrahman Muhammad Wafii</li>
+                                <li>Teknik Informatika</li>
+                                <li>0110221116</li>
+                                <li>STT Terpadu Nurul FIkri</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="item second-item">
+                            <img src="../static/assets/images/iki.jpg" alt="fadel" class="img-thumbnail rounded-circle"
+                                style="width: 5cm; height: 5cm;">
+                            <ul>
+                                <li>Muhammad Rizqi</li>
+                                <li>Teknik Informatika</li>
+                                <li>0110221267</li>
+                                <li>STT Terpadu Nurul FIkri</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer gray-bg">
+        <div class="container text-center">
+            <div class="footer-col2">
+                <ul class="weblinks-inline marg_bot">
+                    <li>
+                        <a href="https://www.github.com/Rizqi-25/" class="social transition" targer="_blank">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.github.com/fdlrhmnwafii/" class="social transition" targer="_blank">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p class="copyright">
+                <a href="">© Text Summarizer 2023 Information Retrieval</a> <br>
+                All Rights Reserved, Developed by Padel & Rizqi 3DE01 STT NF
+                <a targer="_blank" href="http://github.com/Rizqi-25/">Rizqi&Padel</a>
+            </p>
+        </div>
+
+    </footer>
+</body>
+
+</html>
